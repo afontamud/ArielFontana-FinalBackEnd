@@ -1,54 +1,33 @@
-const express = require ("express");
-const app = express ();
+const express = require ("express")
+const path = require( "path");
 
+const productRouter = require( "./src/routers/productos");
+const carritoRouter = require("./src/routers/carrito" );
 
-app.use(express.json());
+ 
 
-const productos = [
-    {id:1, title:"Pantalla", precio:100, enroll: true},
-    {id:2, title:"Teclado", precio:200, enroll: true},
-    {id:3, title:"Mause", precio:150, enroll: true},
-    {id:4, title:"Auriculares", precio:50, enroll: false},
-    {id:5, title:"SSD", precio:8000, enroll: true},
-    {id:6, title:"RAM", precio: 5000, enroll: true},
-    {id:7, title:"Placa de video", precio:160000, enroll: true},
-];
+const app = express();
+const PORT = process.env.PORT || 8080;
 
-app.get("/", (req,res) =>{
-    res.send("JS api")
+ 
+
+//app.use( express. static(__dirname+*/public*))
+
+app.use(express. json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use( "*/api/productos", productRouter);
+app.use( "*/api/carrito", carritoRouter);
+
+ 
+
+app.use((req, res) => {
+    res. status( 404).json({
+    error: -2,
+    descripcion: `rute "${req.originalUrl}" metodo "${req.method}" no implementada`,
+    });
 });
 
-app.get("/api/productos/:id", (req,res) => {
-    const productos = productos.find(c => c.id === parseInt(req.params.id));
-    if (!productos) return res.status(404).send("Producto no encontrado");
-    else res.send(productos);
+app.Listen(PORT, () => {
+console.log(`RUN http://localhost:${PORT}`);
 });
-
-app.get("/api/productos", (req,res) =>{
-    res.send(productos);
-});
-
-
-app.post("/api/productos", (req,res) => {
-    const productos = {
-        id: productos[productos.length - 1].id + 1,  
-        title: req.body.title,
-        precio:parseInt(req.body.precio),
-        enroll:(req.body.enroll === "true")
-    };
-
-    productos.push(productos);
-    res.send(productos)
-});
-
-app.delete("/api/productos/:id", (req, res) =>{
-    const productos = productos.find(c=> c.id === parseInt(req.params.id));
-    if (!productos) return res.status(404).send("Producto no encontrado");
-
-    const index = productos.indexOf(productos)
-    productos.splice(index, 1);
-    res.send(productos);
-});
-
-const port = process.env.port || 80;
-app.listen(port,() => console.log(`Escuchando en puerto ${port}.`));

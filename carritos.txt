@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "timestamp": 1670275222903,
+    "productos": [
+      {
+        "id": 1,
+        "timestamp": 1670274710001,
+        "nombre": "Fresnel 650W",
+        "descripcion": "luz enfocable, la forma del cono de luz se puede variar. El funcionamiento se el de una lente frente a la bombilla que se puede mover hacia adelante o hacia atrás, lo que extiende o estrecha el haz de luz emitido.",
+        "codigo": "abc",
+        "precio": 15000,
+        "foto": "https://tvgroup.com.ar/wp-content/uploads/2019/10/fresnel-led-compact-120w-3-600x640.jpg",
+        "stock": 6
+      },
+      {
+        "id": 2,
+        "timestamp": 1670274720902,
+        "nombre": "Pampa Obarrido de 4 tuvos",
+        "descripcion": "Fuentes de iluminación totalmente portables. Construidos en Material Plástico de Alto Impacto (ABS).",
+        "codigo": "abc",
+        "precio": 11000,
+        "foto": "https://obarrio.com/wp-content/uploads/2018/02/pampa.jpg",
+        "stock": 4
+      }
+    ]
+  }
+]
